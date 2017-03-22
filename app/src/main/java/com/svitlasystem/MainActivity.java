@@ -1,8 +1,6 @@
 package com.svitlasystem;
 
-import android.accounts.Account;
 import android.app.LoaderManager;
-import android.content.ContentResolver;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -11,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.svitlasystem.content_provider.ProviderContract;
+import com.svitlasystem.schedule.PollReceiver;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -19,16 +18,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getLoaderManager().initLoader(0, null, this);
-
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        bundle.putBoolean(ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
-
-        Account account = new Account("SyncAccount", "stubAuthenticator");
-        ContentResolver.setIsSyncable(account, "com.svitlasystem.CloudDataProvider", 1);
-        ContentResolver.setSyncAutomatically(account, "com.svitlasystem.CloudDataProvider", true);
-        ContentResolver.addPeriodicSync(account, "com.svitlasystem.CloudDataProvider", Bundle.EMPTY, 60L);
-
+        PollReceiver.scheduleWork(this);
     }
 
     @Override

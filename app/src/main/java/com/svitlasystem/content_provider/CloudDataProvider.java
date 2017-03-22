@@ -1,17 +1,23 @@
 package com.svitlasystem.content_provider;
 
 import android.content.ContentProvider;
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.OperationApplicationException;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.svitlasystem.database.DBContract;
 import com.svitlasystem.database.DBHelper;
+
+import java.util.ArrayList;
 
 import static com.svitlasystem.content_provider.ProviderContract.CONTENT_AUTHORITY;
 import static com.svitlasystem.content_provider.ProviderContract.PATH_BEER;
@@ -197,6 +203,21 @@ public class CloudDataProvider extends ContentProvider {
 
 
         return rowCount;
+    }
+
+    @NonNull
+    @Override
+    public ContentProviderResult[] applyBatch(ArrayList<ContentProviderOperation> operations) throws OperationApplicationException {
+        SQLiteDatabase db = mDBHelper.getWritableDatabase();
+        db.beginTransaction();
+
+        try {
+            ContentProviderResult[] results = super.applyBatch(operations);
+            db.setTransactionSuccessful();
+            return results;
+        } finally {
+            db.endTransaction();
+        }
     }
 
     @Override
