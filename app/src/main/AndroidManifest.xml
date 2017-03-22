@@ -30,6 +30,7 @@
         <receiver android:name=".schedule.PollReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="com.cloud.data.FETCH"/>
             </intent-filter>
         </receiver>
 

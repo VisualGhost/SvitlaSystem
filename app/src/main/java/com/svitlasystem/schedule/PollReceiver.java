@@ -1,6 +1,5 @@
 package com.svitlasystem.schedule;
 
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -12,7 +11,7 @@ import com.svitlasystem.networking.ScheduledService;
 
 public class PollReceiver extends WakefulBroadcastReceiver {
 
-    private static final int PERIOD = 1 * 60 * 1000; // 3 minutes
+    private static final int PERIOD = 3 * 60 * 1000; // 3 minutes
     private static final int INITIAL_DELAY = 0; // 0 seconds
 
     @Override

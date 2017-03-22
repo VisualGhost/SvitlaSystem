@@ -36,6 +36,7 @@ public class ScheduledService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        Log.d(TAG, "onHandleIntent");
         try {
             CloudData cloudData = loadData();
             if (cloudData != null) {

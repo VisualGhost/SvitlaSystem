@@ -1,39 +1,36 @@
 package com.svitlasystem;
 
-import android.app.LoaderManager;
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.svitlasystem.content_provider.ProviderContract;
+import com.svitlasystem.networking.ScheduledService;
 import com.svitlasystem.schedule.PollReceiver;
+import com.svitlasystem.ui.PageFragmentAdapter;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getLoaderManager().initLoader(0, null, this);
         PollReceiver.scheduleWork(this);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+
+        PageFragmentAdapter adapter = new PageFragmentAdapter(this,
+                getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(this, ProviderContract.BEER_URI,
-                null, null, null, null);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        Log.d("Test", String.valueOf(cursor != null ? cursor.getCount() : "-1"));
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
+    protected void onResume() {
+        super.onResume();
+        startService(new Intent(this, ScheduledService.class));
     }
 }
