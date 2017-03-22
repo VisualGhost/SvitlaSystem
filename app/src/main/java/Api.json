@@ -1,0 +1,28 @@
+{
+  "beers": [
+    {
+      "id": 1,
+      "name": "Tripel Karmeliet",
+      "type": "Tripel"
+    },
+    {
+      "id": 2,
+      "name": "Sierra Nevada Kellerweis",
+      "type": "Hefeweizen"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Co Nam",
+      "latitude": 37.792094,
+      "longitude": -122.421169
+    },
+    {
+      "id": 2,
+      "name": "Hawaii West",
+      "latitude": 37.798345,
+      "longitude": -122.409307
+    }
+  ]
+}
