@@ -2,4 +2,5 @@
     <string name="app_name">SvitlaSystem</string>
     <string name="beers">Beers</string>
     <string name="locations">Locations</string>
+    <string name="no_maps">There is no map in the project</string>
 </resources>

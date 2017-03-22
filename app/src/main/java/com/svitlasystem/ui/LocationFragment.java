@@ -2,18 +2,28 @@ package com.svitlasystem.ui;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.svitlasystem.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
-public class LocationFragment extends Fragment {
-    @Nullable
+public class LocationFragment extends MapFragment implements OnMapReadyCallback {
+
+    private boolean needsInit;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.locations, container, false);
+    public void onActivityCreated(Bundle bundle) {
+        super.onActivityCreated(bundle);
+
+        if (bundle == null) {
+            needsInit = true;
+        }
+
+        getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
     }
 }

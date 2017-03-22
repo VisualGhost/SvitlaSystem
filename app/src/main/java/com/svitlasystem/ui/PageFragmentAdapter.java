@@ -1,15 +1,15 @@
 package com.svitlasystem.ui;
 
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentStatePagerAdapter;
 
 import com.svitlasystem.R;
 import com.svitlasystem.ui.beers.BeerFragment;
 
-public class PageFragmentAdapter extends FragmentPagerAdapter {
+public class PageFragmentAdapter extends FragmentStatePagerAdapter {
 
     private static final int COUNT_PAGE = 2;
     private Context mContext;
