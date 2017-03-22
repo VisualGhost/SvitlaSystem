@@ -42,7 +42,7 @@ public class ScheduledService extends IntentService {
             if (cloudData != null) {
                 applyBatch(cloudData);
             }
-        } catch (IOException | RemoteException | OperationApplicationException e) {
+        } catch (IOException | RemoteException | OperationApplicationException | com.google.gson.JsonSyntaxException e) {
             Log.e(TAG, e.toString());
         }
         PollReceiver.completeWakefulIntent(intent);
