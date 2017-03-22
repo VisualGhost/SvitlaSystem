@@ -11,10 +11,24 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    def apiPropFile = rootProject.file('api.properties')
+    def Properties apiProperties = new Properties()
+
+    if (apiPropFile.canRead()) {
+        apiProperties.load(new FileInputStream(apiPropFile))
+    } else {
+        throw new GradleException("API properties not find")
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        applicationVariants.all { variant ->
+            variant.buildConfigField "String", "BASE_URL", apiProperties['BASE_URL']
         }
     }
 }
@@ -26,4 +40,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
 }

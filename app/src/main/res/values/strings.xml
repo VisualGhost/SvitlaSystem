@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SvitlaSystem</string>
+    <string name="read_perm">read</string>
+    <string name="write_perm">write</string>
 </resources>

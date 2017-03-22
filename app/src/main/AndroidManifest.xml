@@ -2,6 +2,20 @@
 <manifest package="com.svitlasystem"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+    <permission
+        android:name="${applicationId}.provider.READ"
+        android:description="@string/read_perm" />
+    <permission
+        android:name="${applicationId}.provider.WRITE"
+        android:description="@string/write_perm" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,11 +30,38 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        
+
         <provider
-            android:authorities="${applicationId}.CloudDataProvider"
             android:name=".content_provider.CloudDataProvider"
-            android:exported="false"/>
+            android:authorities="${applicationId}.CloudDataProvider"
+            android:exported="false"
+            android:syncable="true"
+            android:multiprocess="true"
+            android:readPermission="${applicationId}.provider.READ"
+            android:writePermission="${applicationId}.provider.WRITE"
+            />
+
+        <service android:name=".sync.AuthenticatorService">
+            <intent-filter>
+                <action android:name="android.cloud.data.Authenticator"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.cloud.data.Authenticator"
+                android:resource="@xml/authenticator"/>
+        </service>
+
+        <service
+            android:name=".sync.SyncService"
+            android:exported="true"
+            android:process=":sync"
+            >
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter"/>
+        </service>
     </application>
 
 </manifest>
