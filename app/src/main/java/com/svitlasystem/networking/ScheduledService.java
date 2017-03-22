@@ -100,6 +100,7 @@ public class ScheduledService extends IntentService {
 
                                     .withValue(DBContract.Beer.ID, beer.getId())
                                     .withValue(DBContract.Beer.NAME, beer.getName())
+                                    .withValue(DBContract.Beer.TYPE, beer.getType())
                                     .build();
 
                     operations.add(contentProviderOperation);

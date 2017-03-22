@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.svitlasystem.R;
+import com.svitlasystem.ui.beers.BeerFragment;
 
 public class PageFragmentAdapter extends FragmentPagerAdapter {
 
@@ -22,9 +23,9 @@ public class PageFragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new BeerFragment();
-            case 1:
                 return new LocationFragment();
+            case 1:
+                return new BeerFragment();
             default:
                 throw new IllegalArgumentException("Wrong position: " + position);
 
@@ -35,9 +36,9 @@ public class PageFragmentAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return mContext.getString(R.string.beers);
-            case 1:
                 return mContext.getString(R.string.locations);
+            case 1:
+                return mContext.getString(R.string.beers);
             default:
                 throw new IllegalArgumentException("Wrong position: " + position);
         }

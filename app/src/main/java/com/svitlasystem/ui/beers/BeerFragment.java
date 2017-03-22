@@ -1,4 +1,4 @@
-package com.svitlasystem.ui;
+package com.svitlasystem.ui.beers;
 
 
 import android.database.Cursor;
@@ -6,7 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.CursorLoader;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.svitlasystem.R;
 import com.svitlasystem.content_provider.ProviderContract;
 
 public class BeerFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
+
+    private BeerAdapter mAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,7 +28,12 @@ public class BeerFragment extends Fragment implements android.support.v4.app.Loa
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.beers_list, container, false);
+        View view = inflater.inflate(R.layout.beers_list, container, false);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter = new BeerAdapter();
+        recyclerView.setAdapter(mAdapter);
+        return view;
     }
 
     @Override
@@ -36,12 +44,12 @@ public class BeerFragment extends Fragment implements android.support.v4.app.Loa
 
     @Override
     public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor cursor) {
-        Log.d("Test", String.valueOf(cursor != null ? cursor.getCount() : "-1"));
+        mAdapter.setCursor(cursor);
     }
 
     @Override
     public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
-
+        mAdapter.setCursor(null);
     }
 
 }
