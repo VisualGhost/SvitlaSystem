@@ -12,7 +12,6 @@
         android:layout_marginStart="@dimen/row_margin"
         android:layout_weight="20"
         android:gravity="center_vertical"
-        style="@style/FontStyle"
         />
 
     <TextView
@@ -21,7 +20,8 @@
         android:layout_height="match_parent"
         android:layout_weight="50"
         android:gravity="center_vertical"
-        style="@style/FontStyle"
+        android:ellipsize="end"
+        android:maxLines="1"
         />
 
     <TextView
@@ -32,9 +32,8 @@
         android:layout_marginRight="@dimen/row_margin"
         android:layout_weight="30"
         android:ellipsize="end"
-        android:gravity="center_vertical"
         android:maxLines="1"
-        style="@style/FontStyle"
+        android:gravity="center_vertical"
         />
 
 </LinearLayout>

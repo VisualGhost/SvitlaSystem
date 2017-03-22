@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="camera_update_padding">200dp</dimen>
+    <dimen name="camera_update_padding">10dp</dimen>
     <dimen name="row_height">48dp</dimen>
     <dimen name="row_margin">16dp</dimen>
     <dimen name="recycler_padding_top">16dp</dimen>
