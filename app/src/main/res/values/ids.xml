@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="activity_main" type="id"/>
+    <item name="tabs" type="id"/>
+    <item name="pager" type="id"/>
+    <item name="id" type="id"/>
+    <item name="name" type="id"/>
+    <item name="type" type="id"/>
+    <item name="recyclerview" type="id"/>
+</resources>

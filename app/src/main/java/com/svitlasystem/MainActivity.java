@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.svitlasystem.networking.ScheduledService;
 import com.svitlasystem.schedule.PollReceiver;
-import com.svitlasystem.ui.PageFragmentAdapter;
-import com.svitlasystem.ui.map.Utils;
+import com.svitlasystem.ui.map.page_adapter.PageFragmentAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-        Log.d("Test", "isGooglePlayServicesAvailable: " + Utils.isGooglePlayServicesAvailable(this));
     }
 
     @Override

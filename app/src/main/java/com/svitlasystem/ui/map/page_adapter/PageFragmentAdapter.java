@@ -1,4 +1,4 @@
-package com.svitlasystem.ui;
+package com.svitlasystem.ui.map.page_adapter;
 
 
 import android.app.Fragment;
@@ -7,6 +7,7 @@ import android.content.Context;
 import android.support.v13.app.FragmentStatePagerAdapter;
 
 import com.svitlasystem.R;
+import com.svitlasystem.ui.map.LocationFragment;
 import com.svitlasystem.ui.beers.BeerFragment;
 
 public class PageFragmentAdapter extends FragmentStatePagerAdapter {
